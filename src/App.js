@@ -9,7 +9,12 @@ function App() {
 
   const getPosts = async () => {
     const querySnapshot = await getDocs(collection(db, 'posts'));
-    setPosts(querySnapshot.docs.map(doc => doc.data()));
+    setPosts(querySnapshot.docs.map(doc => (
+      {
+        id: doc.id,
+        post: doc.data(),
+      }
+    )));
   };
 
   useEffect(() => {
@@ -22,11 +27,12 @@ function App() {
         <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="" className="app__headerLogo" />
       </div>
       {
-        posts.map((post) => (
+        posts.map((data) => (
           <Post
-            username = {post.username}
-            imageUrl = {post.imageUrl}
-            description = {post.description}
+            key = {data.id}
+            username = {data.post.username}
+            imageUrl = {data.post.imageUrl}
+            description = {data.post.description}
           />
         ))
       }
