@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from './components/Post';
+import { db } from './fire';
+import { collection, getDocs } from "firebase/firestore"; 
 
 function App() {
-  const [posts, setPosts] = useState([
-    {
-      username: "Jake",
-      imageUrl: "https://onlinecoursetutorials.com/wp-content/uploads/2022/02/what-is-reactjs-advantages-and-disadvantages.png",
-      description: "Here goes the description",
-    },
-    {
-      username: "Sam",
-      imageUrl: "https://onlinecoursetutorials.com/wp-content/uploads/2022/02/what-is-reactjs-advantages-and-disadvantages.png",
-      description: "Here same's description",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = async () => {
+    const querySnapshot = await getDocs(collection(db, 'posts'));
+    setPosts(querySnapshot.docs.map(doc => doc.data()));
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <div className="app">
       <div className="app__header">
