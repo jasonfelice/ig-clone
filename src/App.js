@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Post from './components/Post';
 import { db } from './fire';
 import { collection, getDocs } from "firebase/firestore"; 
 import Header from './components/Header';
+import Splash from './pages/Splash';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -25,16 +27,18 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {
-        posts.map((data) => (
-          <Post
-            key = {data.id}
-            username = {data.post.username}
-            imageUrl = {data.post.imageUrl}
-            description = {data.post.description}
-          />
-        ))
-      }
+      <Routes>
+        <Route path="/loggedin" element={
+           posts.map((data) => (
+            <Post
+              key = {data.id}
+              username = {data.post.username}
+              imageUrl = {data.post.imageUrl}
+              description = {data.post.description}
+            />
+        ))}/>
+        <Route path="/" element={<Splash />} />
+      </Routes>
     </div>
   );
 }
