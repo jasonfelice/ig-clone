@@ -3,6 +3,7 @@ import './App.css';
 import Post from './components/Post';
 import { db } from './fire';
 import { collection, getDocs } from "firebase/firestore"; 
+import Header from './components/Header';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -23,9 +24,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app__header">
-        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="" className="app__headerLogo" />
-      </div>
+      <Header />
       {
         posts.map((data) => (
           <Post
