@@ -1,0 +1,30 @@
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash__login,
+.splash__prompt {
+  background-color: #fff;
+  width: 350px;
+  padding: 10px 40px;
+}
+
+.splash__login {
+  margin-bottom: 10px;
+}
+
+.splash__login, form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+form input[type=submit] {
+  margin-top: 10px;
+}
+
+form input {
+  padding: 9px;
+}
