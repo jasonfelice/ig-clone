@@ -16,6 +16,10 @@ section {
   margin-bottom: 10px;
 }
 
+.splash__prompt p {
+  margin: 15px;
+}
+
 .splash__logo {
   width: 175px;
   height: 51px;
@@ -32,6 +36,7 @@ section {
 input {
   background-color: #fafafa;
   border: 1px solid #dbdbdb;
+  border-radius: 2px;
 }
 
 input:focus {
@@ -40,7 +45,17 @@ input:focus {
 }
 
 form button {
+  border: none;
+  border-radius: 5px;
+  background-color: #0095f6;
+  color: #fff;
+  font-weight: 600;
   margin-top: 10px;
+  height: 30px;
+}
+
+form button:disabled {
+  background-color: #b2dffc;
 }
 
 form input {

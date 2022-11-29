@@ -1,21 +1,32 @@
-import React from 'react';
+import { React, useState } from 'react';
 import './Splash.css';
 import logo from '../assets/logo.png';
 
 export default function Splash() {
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
+  const formValid = !!(form.email && form.password.length > 3);
+  const handleInput = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  }
   return (
     <section>
         <main>
             <div className="splash__login">
               <img src={logo} alt="Logo" className="splash__logo" />
               <form>
-                <input type="email" name="email" placeholder="Email"/>
-                <input type="password" name="password" placeholder="Password" />
-                <button type="submit">Log in </button>
+                <input onChange={handleInput} value={form.email} type="email" name="email" placeholder="Email"/>
+                <input onChange={handleInput} value={form.password} type="password" name="password" placeholder="Password" />
+                <button disabled={!formValid}type="submit">Log in </button>
               </form>
             </div>
             <div className="splash__prompt">
-              Don't have an account? Sign up
+              <p>Don't have an account? Sign up</p>
             </div>
         </main>
         <footer>
