@@ -19,4 +19,5 @@
 
 .app__headerLogo {
   object-fit: contain;
+  width: 103px;
 }

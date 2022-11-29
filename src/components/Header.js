@@ -1,10 +1,13 @@
 import React from 'react'
 import '../App.css'
+import logo from '../assets/logo.png';
 
 function Header() {
   return (
     <div className="app__header">
-        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="" className="app__headerLogo" />
+        <a href="/">
+          <img src={logo} alt="" className="app__headerLogo" />
+        </a>
     </div>
   )
 }
