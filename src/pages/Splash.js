@@ -20,7 +20,9 @@ export default function Splash() {
         <main>
             <div className="splash_main">
               <div className="splash__login">
-                <img src={logo} alt="Logo" className="splash__logo" />
+                <div className="splash__head-wrapper">
+                  <img src={logo} alt="Logo" className="splash__logo" />
+                </div>
                 <form>
                   <input onChange={handleInput} value={form.email} type="email" name="email" placeholder="Email"/>
                   <input onChange={handleInput} value={form.password} type="password" name="password" placeholder="Password" />

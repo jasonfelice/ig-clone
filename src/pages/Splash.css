@@ -3,6 +3,7 @@
   --greyOne: #dbdbdb;
   --greyTwo: #a9a9a9;
   --greyThree: #8e8e8e;
+  --greyFour: #8e8e95;
   --blueOne: #b2dffc;
   --blueTwo: #0095f6;
   --blueCyan: #27c4f5;
@@ -53,11 +54,24 @@ main {
   margin: 15px;
 }
 
+.splash__head-wrapper {
+  margin: 36px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.splash__head-wrapper p {
+  text-align: center;
+  color: var(--greyFour);
+  font-weight: 500;
+}
+
 .splash__logo {
   width: 175px;
   height: 51px;
   align-self: center;
-  margin: 36px 12px;
+  margin: auto;
 }
 
 .splash__login, form {
