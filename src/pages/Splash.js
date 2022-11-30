@@ -17,20 +17,22 @@ export default function Splash() {
   return (
     <section>
         <main>
-            <div className="splash__login">
-              <img src={logo} alt="Logo" className="splash__logo" />
-              <form>
-                <input onChange={handleInput} value={form.email} type="email" name="email" placeholder="Email"/>
-                <input onChange={handleInput} value={form.password} type="password" name="password" placeholder="Password" />
-                <button disabled={!formValid}type="submit">Log in </button>
-              </form>
-            </div>
-            <div className="splash__prompt">
-              <p>Don't have an account? Sign up</p>
+            <div className="splash_main">
+              <div className="splash__login">
+                <img src={logo} alt="Logo" className="splash__logo" />
+                <form>
+                  <input onChange={handleInput} value={form.email} type="email" name="email" placeholder="Email"/>
+                  <input onChange={handleInput} value={form.password} type="password" name="password" placeholder="Password" />
+                  <button disabled={!formValid}type="submit">Log in </button>
+                </form>
+              </div>
+              <div className="splash__prompt">
+                <p>Don't have an account? <a href='/'>Sign up</a></p>
+              </div>
             </div>
         </main>
         <footer>
-            footer
+          © 2022 Instagram clone by Jake Felice
         </footer>
     </section>
   )

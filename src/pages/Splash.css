@@ -1,13 +1,44 @@
+:root {
+  --greyLight: #fafafa;
+  --greyOne: #dbdbdb;
+  --greyTwo: #a9a9a9;
+  --greyThree: #8e8e8e;
+  --blueOne: #b2dffc;
+  --blueTwo: #0095f6;
+  --blueCyan: #27c4f5;
+}
+
 section {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  height: 93vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--blueCyan);
+  font-weight: 500;
+}
+
+a:active {
+  color: var(--blueOne);
+}
+
+main {
+  height: 80vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .splash__login,
 .splash__prompt {
   background-color: #fff;
-  border: 1px solid #dbdbdb;
+  border: 1px solid var(--greyOne);
   width: 350px;
   padding: 10px 40px;
 }
@@ -17,6 +48,8 @@ section {
 }
 
 .splash__prompt p {
+  text-align: center;
+  font-size: 14px;
   margin: 15px;
 }
 
@@ -34,20 +67,20 @@ section {
 }
 
 input {
-  background-color: #fafafa;
-  border: 1px solid #dbdbdb;
+  background-color: var(--greyLight);
+  border: 1px solid var(--greyOne);
   border-radius: 2px;
 }
 
 input:focus {
   outline: none;
-  border: 1px solid #a9a9a9;
+  border: 1px solid var(--greyTwo);
 }
 
 form button {
   border: none;
   border-radius: 5px;
-  background-color: #0095f6;
+  background-color: var(--blueTwo);
   color: #fff;
   font-weight: 600;
   margin-top: 10px;
@@ -55,9 +88,27 @@ form button {
 }
 
 form button:disabled {
-  background-color: #b2dffc;
+  background-color: var(--blueOne);
 }
 
 form input {
   padding: 9px;
+}
+
+footer {
+  padding: 12px;
+  font-size: 13px;
+  color: var(--greyThree);
+  margin-bottom: 52px;
+}
+
+@media only screen and (max-width: 400px) {
+  main, .splash_main, .splash__login, .splash__prompt {
+    width: 100%;
+  }
+
+  main {
+    height: auto;
+    min-height: auto;
+  }
 }
