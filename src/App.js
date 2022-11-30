@@ -6,6 +6,7 @@ import { db } from './fire';
 import { collection, getDocs } from "firebase/firestore"; 
 import Header from './components/Header';
 import Splash from './pages/Splash';
+import Signup from './pages/Signup';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -38,6 +39,7 @@ function App() {
             />
         ))}/>
         <Route path="/" element={<Splash />} />
+        <Route path="/accounts/signup" element={<Signup />} />
       </Routes>
     </div>
   );

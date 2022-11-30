@@ -1,9 +1,8 @@
 import { React, useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Splash.css';
 import logo from '../assets/logo.png';
 
-export default function Splash() {
+export default function Signup() {
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -28,7 +27,7 @@ export default function Splash() {
                 </form>
               </div>
               <div className="splash__prompt">
-                <p>Don't have an account? <Link to='/accounts/signup'>Sign up</Link></p>
+                <p>Have an account? <a href='/'>Log in</a></p>
               </div>
             </div>
         </main>
