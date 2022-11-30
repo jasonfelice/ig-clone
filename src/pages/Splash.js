@@ -26,7 +26,7 @@ export default function Splash() {
                 <form>
                   <input onChange={handleInput} value={form.email} type="email" name="email" placeholder="Email"/>
                   <input onChange={handleInput} value={form.password} type="password" name="password" placeholder="Password" />
-                  <button disabled={!formValid}type="submit">Log in </button>
+                  <button disabled={!formValid} type="submit">Log in </button>
                 </form>
               </div>
               <div className="splash__prompt">

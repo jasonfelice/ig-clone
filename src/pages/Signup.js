@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Splash.css';
 import logo from '../assets/logo.png';
 
@@ -30,11 +31,11 @@ export default function Signup() {
                   <input onChange={handleInput} value={form.fullname} type="text" name="fullname" placeholder="Full Name"/>
                   <input onChange={handleInput} value={form.username} type="text" name="username" placeholder="Username"/>
                   <input onChange={handleInput} value={form.password} type="password" name="password" placeholder="Password" />
-                  <button disabled={!formValid}type="submit">Sign up </button>
+                  <button disabled={!formValid} type="submit">Sign up </button>
                 </form>
               </div>
               <div className="splash__prompt">
-                <p>Have an account? <a href='/'>Log in</a></p>
+                <p>Have an account? <Link to='/'>Log in</Link></p>
               </div>
             </div>
         </main>
