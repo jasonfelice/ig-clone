@@ -116,6 +116,13 @@ footer {
   margin-bottom: 52px;
 }
 
+button img {
+  display: block;
+  margin: auto;
+  width: 25px;
+  filter: invert(1);
+}
+
 @media only screen and (max-width: 400px) {
   main, .splash_main, .splash__login, .splash__prompt {
     width: 100%;

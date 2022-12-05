@@ -2,14 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Post from './components/Post';
-import { db } from './fire';
 import { collection, getDocs } from "firebase/firestore"; 
+import { auth, db } from './fire';
+import { onAuthStateChanged  } from "firebase/auth";
 import Header from './components/Header';
 import Splash from './pages/Splash';
 import Signup from './pages/Signup';
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    }
+  }, [user]);
 
   const getPosts = async () => {
     const querySnapshot = await getDocs(collection(db, 'posts'));
