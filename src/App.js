@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header loggedIn={!!user} />
       <Routes>
         <Route path="/loggedin" element={
            posts.map((data) => (
