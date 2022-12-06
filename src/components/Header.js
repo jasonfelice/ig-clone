@@ -1,8 +1,7 @@
 import React from 'react'
 import '../App.css'
 import logo from '../assets/logo.png';
-import { signOut } from "firebase/auth";
-import { auth } from '../fire';
+import AvatarMenu from './AvatarMenu';
 
 
 function Header({loggedIn}) {
@@ -11,7 +10,7 @@ function Header({loggedIn}) {
         <a href="/">
           <img src={logo} alt="" className="app__headerLogo" />
         </a>
-        {loggedIn && (<button onClick={() => signOut(auth)} type="button">Logout</button>)}
+        {loggedIn && (<AvatarMenu />)}
     </div>
   )
 }
