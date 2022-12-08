@@ -2,6 +2,8 @@ import React from 'react'
 import '../App.css'
 import logo from '../assets/logo.png';
 import AvatarMenu from './AvatarMenu';
+import AddIcon from '@mui/icons-material/Add';
+
 
 
 function Header({loggedIn}) {
@@ -10,7 +12,14 @@ function Header({loggedIn}) {
         <a href="/">
           <img src={logo} alt="" className="app__headerLogo" />
         </a>
-        {loggedIn && (<AvatarMenu />)}
+        {loggedIn && (
+          <div className="app__header-control">
+            <i className="app__create-post-button">
+              <AddIcon />
+            </i>
+            <AvatarMenu />
+          </div>
+        )}
     </div>
   )
 }

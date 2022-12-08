@@ -8,6 +8,7 @@ import { onAuthStateChanged  } from "firebase/auth";
 import Header from './components/Header';
 import Splash from './pages/Splash';
 import Signup from './pages/Signup';
+import CreatePost from './components/CreatePost';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -44,6 +45,7 @@ function App() {
   return (
     <div className="app">
       <Header loggedIn={!!user} />
+      <CreatePost />
       <Routes>
         <Route path="/loggedin" element={
            posts.map((data) => (

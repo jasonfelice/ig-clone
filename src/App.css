@@ -5,6 +5,13 @@
 
 :root {
   --backGrey: #fafafa;
+  --greyOne: #dbdbdb;
+  --greyTwo: #a9a9a9;
+  --greyThree: #8e8e8e;
+  --greyFour: #8e8e95;
+  --blueOne: #b2dffc;
+  --blueTwo: #0095f6;
+  --blueCyan: #27c4f5;
 }
 
 .app {
@@ -23,4 +30,26 @@
 .app__headerLogo {
   object-fit: contain;
   width: 103px;
+}
+
+.app__create-post-button {
+  display: flex;
+  border-radius: 50%;
+  padding: 2px;
+  transition: all 0.05s ease-out;
+}
+
+.app__create-post-button:hover {
+  box-shadow: 0 0 10px 0 var(--greyOne);
+  transform: scale(1.1);
+}
+
+.app__create-post-button:active {
+  transform: scale(0.9);
+}
+
+.app__header-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
