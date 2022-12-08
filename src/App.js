@@ -13,6 +13,7 @@ import CreatePost from './components/CreatePost';
 function App() {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,8 +45,8 @@ function App() {
 
   return (
     <div className="app">
-      <Header loggedIn={!!user} />
-      <CreatePost />
+      <Header setOpen={setOpen} loggedIn={!!user} />
+      <CreatePost open={open} setOpen={setOpen} />
       <Routes>
         <Route path="/loggedin" element={
            posts.map((data) => (
