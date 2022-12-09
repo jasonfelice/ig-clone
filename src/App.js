@@ -8,17 +8,21 @@ import Splash from "./pages/Splash";
 import Signup from "./pages/Signup";
 import CreatePost from "./components/CreatePost";
 import Posts from "./pages/Posts";
+import spinner from "./assets/spinner.gif";
 
 function App() {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        setLoading(false);
       } else {
         setUser(null);
+        setLoading(false);
       }
     });
 
@@ -31,10 +35,14 @@ function App() {
     <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} />
       <CreatePost username={user?.displayName} open={open} setOpen={setOpen} />
-      {
-        user ? (
+      {loading ? (
+        <div style={{height: "50vh", display: "flex"}}>
+          <img style={{margin: "auto", width: "50px"}} src={spinner} alt="" />
+        </div>
+      ) :
+        (user ? (
           <Routes>
-            <Route path="/" element={<Posts />} />
+            <Route path="/" element={<Posts setLoading={setLoading} />} />
           </Routes>
         ) :
         (
@@ -42,7 +50,7 @@ function App() {
             <Route path="/" element={<Splash />} />
             <Route path="/accounts/signup" element={<Signup />} />
           </Routes>
-        )
+        ))
       }
     </div>
   );

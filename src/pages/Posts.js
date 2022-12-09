@@ -16,7 +16,7 @@ export default function Posts() {
   };
     
   useEffect(() => {
-    getPosts();
+      getPosts();
   }, []);
   return (
     <div className="app__posts">

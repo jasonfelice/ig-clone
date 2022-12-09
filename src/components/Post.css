@@ -2,7 +2,7 @@
   background-color: #fff;
   max-width: 500px;
   border: 1px solid #dbdbdb;
-  margin-bottom: 45px;
+  flex: 1 1 500px;
 }
 
 .post__header {
@@ -22,4 +22,10 @@
 .post__description {
   font-weight: normal;
   padding: 16px;
+}
+
+@media only screen and (max-width: 300px) {
+  .post {
+    min-width: auto;
+  }
 }
