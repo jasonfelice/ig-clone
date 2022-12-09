@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./CreatePost.css";
-import { ref, uploadBytes } from "firebase/storage";
-import { storage } from "../fire";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
+import { db, storage } from "../fire";
+import { v4 as uuidv4 } from 'uuid';
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -29,10 +31,11 @@ const style = {
   borderRadius: "3px"
 };
 
-export default function CreatePost({open, setOpen}) {
+export default function CreatePost({open, setOpen, username}) {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleClose = () => setOpen(false);
   const handleChange = (e) => {
@@ -42,14 +45,37 @@ export default function CreatePost({open, setOpen}) {
   };
 
   const handleUpload = () => {
-    const storageRef = ref(storage, `images/${image.name}`);
-    const uploadTask = uploadBytes(storageRef, image);
+    setUploading(true);
+    const storageRef = ref(storage, `images/${uuidv4() + image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
     uploadTask.on(
         "state_changed",
         (snapshot) => {
-
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
+        },
+        (error) => {
+          // Handle error
+          setUploading(false);
+        },
+        () => {
+          // Handle upload success 
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            addDoc(collection(db, "posts"),{
+              timestamp: serverTimestamp(),
+              imageUrl: downloadURL,
+              description,
+              username
+            });
+          });
+          setProgress(0);
+          setUploading(false);
+          setDescription("");
+          setImage(null);
         }
-    )
+    );
   };
 
   return (
@@ -74,7 +100,7 @@ export default function CreatePost({open, setOpen}) {
             <div className="createPost__panel">
                 { uploading ?
               (<Box sx={{ width: '100%' }}>
-                <LinearProgress variant="determinate" value={50} />
+                <LinearProgress variant="determinate" value={progress} />
               </Box>) :
               (
                <>
@@ -82,7 +108,7 @@ export default function CreatePost({open, setOpen}) {
                 <input onChange={handleChange} hidden accept="image/*" type="file" />
               <PhotoCamera />
               </IconButton>
-              <Button variant="contained" component="label">Upload</Button>
+              <Button onClick={handleUpload} variant="contained" component="label">Upload</Button>
                 </>)
                 }
             </div>

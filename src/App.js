@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} />
-      <CreatePost open={open} setOpen={setOpen} />
+      <CreatePost username={user?.displayName} open={open} setOpen={setOpen} />
       <Routes>
         <Route path="/loggedin" element={
            posts.map((data) => (
