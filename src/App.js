@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Post from './components/Post';
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs, orderBy, query } from "firebase/firestore"; 
 import { auth, db } from './fire';
 import { onAuthStateChanged  } from "firebase/auth";
 import Header from './components/Header';
@@ -30,7 +30,7 @@ function App() {
   }, [user]);
 
   const getPosts = async () => {
-    const querySnapshot = await getDocs(collection(db, 'posts'));
+    const querySnapshot = await getDocs(query(collection(db, 'posts'), orderBy('timestamp', 'desc')));
     setPosts(querySnapshot.docs.map(doc => (
       {
         id: doc.id,
@@ -47,19 +47,27 @@ function App() {
     <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} />
       <CreatePost username={user?.displayName} open={open} setOpen={setOpen} />
-      <Routes>
-        <Route path="/loggedin" element={
-           posts.map((data) => (
-            <Post
-              key = {data.id}
-              username = {data.post.username}
-              imageUrl = {data.post.imageUrl}
-              description = {data.post.description}
-            />
-        ))}/>
-        <Route path="/" element={<Splash />} />
-        <Route path="/accounts/signup" element={<Signup />} />
-      </Routes>
+      {
+        user ? (
+          <Routes>
+            <Route path="/" element={
+               posts.map((data) => (
+                <Post
+                  key = {data.id}
+                  username = {data.post.username}
+                  imageUrl = {data.post.imageUrl}
+                  description = {data.post.description}
+                />
+            ))}/>
+          </Routes>
+        ) :
+        (
+          <Routes>
+            <Route path="/" element={<Splash />} />
+            <Route path="/accounts/signup" element={<Signup />} />
+          </Routes>
+        )
+      }
     </div>
   );
 }
