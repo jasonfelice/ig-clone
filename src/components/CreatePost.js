@@ -79,7 +79,7 @@ export default function CreatePost({open, setOpen, username}) {
   };
 
   return (
-    <div>
+    <>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -115,6 +115,6 @@ export default function CreatePost({open, setOpen, username}) {
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 };
