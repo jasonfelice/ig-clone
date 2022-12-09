@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
-import Post from './components/Post';
-import { collection, getDocs, orderBy, query } from "firebase/firestore"; 
-import { auth, db } from './fire';
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import { auth } from "./fire";
 import { onAuthStateChanged  } from "firebase/auth";
-import Header from './components/Header';
-import Splash from './pages/Splash';
-import Signup from './pages/Signup';
-import CreatePost from './components/CreatePost';
+import Header from "./components/Header";
+import Splash from "./pages/Splash";
+import Signup from "./pages/Signup";
+import CreatePost from "./components/CreatePost";
+import Posts from "./pages/Posts";
 
 function App() {
-  const [posts, setPosts] = useState([]);
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -29,20 +27,6 @@ function App() {
     }
   }, [user]);
 
-  const getPosts = async () => {
-    const querySnapshot = await getDocs(query(collection(db, 'posts'), orderBy('timestamp', 'desc')));
-    setPosts(querySnapshot.docs.map(doc => (
-      {
-        id: doc.id,
-        post: doc.data(),
-      }
-    )));
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
-
   return (
     <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} />
@@ -50,15 +34,7 @@ function App() {
       {
         user ? (
           <Routes>
-            <Route path="/" element={
-               posts.map((data) => (
-                <Post
-                  key = {data.id}
-                  username = {data.post.username}
-                  imageUrl = {data.post.imageUrl}
-                  description = {data.post.description}
-                />
-            ))}/>
+            <Route path="/" element={<Posts />} />
           </Routes>
         ) :
         (
