@@ -57,8 +57,9 @@
 
 .app__posts {
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1fr);
 }
+

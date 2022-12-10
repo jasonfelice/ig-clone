@@ -1,8 +1,8 @@
 .post {
   background-color: #fff;
-  max-width: 500px;
+  max-width: 600px;
   border: 1px solid #dbdbdb;
-  flex: 1 1 500px;
+  grid-column-start: none;
 }
 
 .post__header {
@@ -22,10 +22,4 @@
 .post__description {
   font-weight: normal;
   padding: 16px;
-}
-
-@media only screen and (max-width: 300px) {
-  .post {
-    min-width: auto;
-  }
 }
