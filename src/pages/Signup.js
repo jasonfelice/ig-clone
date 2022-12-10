@@ -69,9 +69,6 @@ export default function Signup() {
               </div>
             </div>
         </main>
-        <footer>
-          © 2022 Instagram clone by Jake Felice
-        </footer>
     </section>
   )
 }

@@ -14,7 +14,6 @@ section {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 93vh;
 }
 
 a {
@@ -110,10 +109,10 @@ form input {
 }
 
 footer {
-  padding: 12px;
+  padding: 52px 12px;
+  text-align: center;
   font-size: 13px;
   color: var(--greyThree);
-  margin-bottom: 52px;
 }
 
 button img {

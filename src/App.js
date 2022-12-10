@@ -52,6 +52,9 @@ function App() {
           </Routes>
         ))
       }
+        <footer>
+          © 2022 Instagram clone by Jake Felice
+        </footer>
     </div>
   );
 }

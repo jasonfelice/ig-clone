@@ -56,9 +56,6 @@ export default function Splash() {
               </div>
             </div>
         </main>
-        <footer>
-          © 2022 Instagram clone by Jake Felice
-        </footer>
     </section>
   )
 }
