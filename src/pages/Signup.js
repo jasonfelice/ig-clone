@@ -1,10 +1,10 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Splash.css';
 import logo from '../assets/logo.png';
 import spinner from '../assets/spinner.gif';
 import { auth } from '../fire';
-import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile  } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
 
 export default function Signup() {
   const [form, setForm] = useState({
