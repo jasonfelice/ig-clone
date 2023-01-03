@@ -2,13 +2,14 @@ import React from 'react'
 import './Post.css';
 import { Avatar } from '@mui/material';
 
-function Post({username, imageUrl, description}) {
+function Post({postId, username, imageUrl, description}) {
   return (
     <div className="post">
         <div className="post__header">
           <Avatar
-            className="post__avatar"
-            src="static/images/avatar/1.jpg"
+            className= "post__avatar"
+            src= "static/images/avatar/1.jpg"
+            alt= {username}
           />
           <h3>{username}</h3>
         </div>
