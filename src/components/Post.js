@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Post.css';
-import { doc, getDocs, getDoc, collection } from "firebase/firestore";
+import { doc, getDocs, collection } from "firebase/firestore";
 import { db } from "../fire";
 import { Avatar } from '@mui/material';
 
