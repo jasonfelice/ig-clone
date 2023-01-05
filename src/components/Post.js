@@ -37,7 +37,7 @@ function Post({postId, username, imageUrl, description}) {
         <h4 className="post__description"><strong>{username}</strong>: {description}</h4>
         <form className="post__form" action="#">
           <input value={comment} onChange={(e) => setComment(e.target.value)} name="comment" placeholder='Write a comment...' />
-          <button disabled={!comment}>Post</button>
+          {comment && (<button disabled={!comment} type="sutmit">Post</button>)}
         </form>
     </div>
   )

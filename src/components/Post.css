@@ -32,6 +32,12 @@
 
 .post__form input {
   flex: 1;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.post__form input:focus {
+  background-color: #fafafa;
 }
 
 .post__form button {
