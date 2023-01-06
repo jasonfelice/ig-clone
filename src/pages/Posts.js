@@ -12,13 +12,13 @@ export default function Posts({ user }) {
   const getPosts = async () => {
     setLoading(true);
     const querySnapshot = await getDocs(query(collection(db, 'posts'), orderBy('timestamp', 'desc')));
-    setLoading(false);
     setPosts(querySnapshot.docs.map(doc => (
-        {
-          id: doc.id,
-          post: doc.data(),
-        }
-    )));
+      {
+        id: doc.id,
+        post: doc.data(),
+      }
+      )));
+    setLoading(false);
   };
     
   useEffect(() => {
