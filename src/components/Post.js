@@ -8,6 +8,10 @@ function Post({postId, username, imageUrl, description}) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
 
+  const postComment = (e) => {
+    e.preventDefault();
+  }
+
    useEffect(() => {
     const getComments = async () => {
       const docRef = doc(db, 'posts', postId);
@@ -35,7 +39,17 @@ function Post({postId, username, imageUrl, description}) {
         <img className="post__image" src={imageUrl} alt="" />
 
         <h4 className="post__description"><strong>{username}</strong>: {description}</h4>
-        <form className="post__form" action="#">
+
+        <div className="post__comments">
+          {comments.map((comment) => (
+            <div key={comment.id} className="post__comment">
+              <span className="post__comment-username">{comment.username}: </span>
+              <span className="post__comment-text">{comment.comment}</span>
+            </div>
+          ))}
+        </div>
+
+        <form onSubmit={postComment} className="post__form" action="#">
           <input value={comment} onChange={(e) => setComment(e.target.value)} name="comment" placeholder='Write a comment...' />
           {comment && (<button disabled={!comment} type="sutmit">Post</button>)}
         </form>
