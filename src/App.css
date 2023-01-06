@@ -20,6 +20,9 @@
 }
 
 .app__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background-color: #fff;
   padding: 16px;
   border-bottom: 1px solid #dbdbdb;

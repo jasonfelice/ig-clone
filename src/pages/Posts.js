@@ -3,7 +3,7 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../fire";
 import Post from "../components/Post";
 
-export default function Posts() {
+export default function Posts({ user }) {
   const [posts, setPosts] = useState([]);
   const getPosts = async () => {
     const querySnapshot = await getDocs(query(collection(db, "posts"), orderBy("timestamp", "desc")));
@@ -26,6 +26,7 @@ export default function Posts() {
             key = {data.id}
             postId = {data.id}
             username = {data.post.username}
+            currentUser = {user}
             imageUrl = {data.post.imageUrl}
             description = {data.post.description}
           />))

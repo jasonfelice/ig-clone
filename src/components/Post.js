@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import './Post.css';
-import { doc, getDocs, collection } from 'firebase/firestore';
+import { doc, getDocs, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../fire';
 import { Avatar } from '@mui/material';
 
-function Post({postId, username, imageUrl, description}) {
+function Post({postId, username, imageUrl, description, currentUser}) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
 
   const postComment = (e) => {
     e.preventDefault();
-  }
+    const postRef = doc(db, 'posts', postId);
+    addDoc(collection(postRef, 'comments'), {
+      comment,
+      username: currentUser.displayName,
+      timestamp: serverTimestamp()
+    }).then(() => setComment(''));
+  };
 
    useEffect(() => {
     const getComments = async () => {

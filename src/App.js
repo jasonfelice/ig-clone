@@ -42,7 +42,7 @@ function App() {
       ) :
         (user ? (
           <Routes>
-            <Route path="/" element={<Posts setLoading={setLoading} />} />
+            <Route path="/" element={<Posts user={user} setLoading={setLoading} />} />
           </Routes>
         ) :
         (
