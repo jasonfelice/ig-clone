@@ -13,6 +13,12 @@
   padding: 16px;
 }
 
+.post__header span {
+  color: #8e8e95;
+  font-size: 10px;
+  margin-left: auto;
+}
+
 .post__image {
   width: 100%;
   min-height: 200px;
