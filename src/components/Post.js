@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Post.css';
-import { doc, getDocs, collection, addDoc, serverTimestamp, query, orderBy } from 'firebase/firestore';
+import { doc, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '../fire';
 import { Avatar } from '@mui/material';
 
@@ -19,16 +19,13 @@ function Post({postId, username, imageUrl, description, currentUser}) {
   };
 
    useEffect(() => {
-    const getComments = async () => {
-      const docRef = doc(db, 'posts', postId);
-      const docSnap = await getDocs(query(collection(docRef, 'comments'), orderBy('timestamp', 'desc')));
-      setComments(docSnap.docs.map((doc) => ({
+    const docRef = doc(db, 'posts', postId);
+    onSnapshot(query(collection(docRef, 'comments'), orderBy('timestamp', 'desc')), (snapshot) => {
+       setComments(snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       })));
-    };
-
-    getComments();
+    });
   }, [postId]);
   return (
     <div className="post">
