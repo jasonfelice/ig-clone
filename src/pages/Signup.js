@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Splash.css';
 import logo from '../assets/logo.png';
 import spinner from '../assets/spinner.gif';
@@ -14,6 +14,7 @@ export default function Signup() {
     password: ""
   });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const { email, fullname , password } = form;
   let formValid = !!(fullname && email && password.length > 3);
@@ -34,7 +35,10 @@ export default function Signup() {
       const user = userCredential.user;
         updateProfile(user, {
           displayName: fullname
-        }).then(() => setLoading(false));
+        }).then(() => {
+          setLoading(false);
+          navigate('/');
+        });
       })
     .catch((error) => {
       setLoading(false);
