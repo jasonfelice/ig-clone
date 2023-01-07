@@ -10,12 +10,13 @@ function Post({postId, username, imageUrl, description, currentUser}) {
 
   const postComment = (e) => {
     e.preventDefault();
+    setComment('');
     const postRef = doc(db, 'posts', postId);
     addDoc(collection(postRef, 'comments'), {
       comment,
       username: currentUser.displayName,
       timestamp: serverTimestamp()
-    }).then(() => setComment(''));
+    });
   };
 
    useEffect(() => {
