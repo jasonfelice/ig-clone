@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore'; 
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'; 
 import { db } from '../fire';
 import Post from '../components/Post';
 import Skeleton from '@mui/material/Skeleton';
@@ -11,14 +11,15 @@ export default function Posts({ user }) {
 
   const getPosts = async () => {
     setLoading(true);
-    const querySnapshot = await getDocs(query(collection(db, 'posts'), orderBy('timestamp', 'desc')));
-    setPosts(querySnapshot.docs.map(doc => (
-      {
-        id: doc.id,
-        post: doc.data(),
-      }
-      )));
-    setLoading(false);
+    onSnapshot(query(collection(db, 'posts'), orderBy('timestamp', 'desc')), (snapshot) => {
+      setPosts(snapshot.docs.map(doc => (
+        {
+          id: doc.id,
+          post: doc.data(),
+        }
+        )));
+        setLoading(false);
+    });
   };
     
   useEffect(() => {
