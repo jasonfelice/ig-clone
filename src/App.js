@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header setOpen={setOpen} loggedIn={!!user} />
+      <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL}/>
       <CreatePost username={user?.displayName} open={open} setOpen={setOpen} />
       {loading ? (
         <div style={{height: "50vh", display: "flex"}}>

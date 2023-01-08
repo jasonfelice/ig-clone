@@ -10,7 +10,7 @@ import { Avatar } from '@mui/material';
 import { signOut } from "firebase/auth";
 import { auth } from '../fire';
 
-export default function AvatarMenu() {
+export default function AvatarMenu({ username, profilePicture }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -49,6 +49,8 @@ export default function AvatarMenu() {
     <Stack direction="row" spacing={2}>
       <div>
         <Avatar
+          src= {profilePicture ? profilePicture: 'static/images/avatar/1.jpg'}
+          alt={username}
           ref={anchorRef}
           id="composition-button"
           aria-controls={open ? 'composition-menu' : undefined}

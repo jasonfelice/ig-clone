@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 
 
-function Header({loggedIn, setOpen}) {
+function Header({loggedIn, setOpen, username, photo}) {
   return (
     <div className="app__header">
         <a href="/">
@@ -17,7 +17,7 @@ function Header({loggedIn, setOpen}) {
             <i onClick={() => setOpen(true)} className="app__create-post-button">
               <AddIcon />
             </i>
-            <AvatarMenu />
+            <AvatarMenu username={username} profilePicture={photo} />
           </div>
         )}
     </div>
