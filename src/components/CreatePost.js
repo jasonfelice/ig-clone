@@ -103,12 +103,13 @@ export default function CreatePost({open, setOpen, username}) {
                 <LinearProgress variant="determinate" value={progress} />
               </Box>) :
               (
-               <>
+                <>
               <IconButton aria-label="upload picture" component="label">
                 <input onChange={handleChange} hidden accept="image/*" type="file" />
               <PhotoCamera />
               </IconButton>
               <Button onClick={handleUpload} variant="contained" component="label">Upload</Button>
+                {image?.name && (<p style={{marginLeft: '5px', color: '#444', alignSelf: 'center', fontSize: '12px'}}>{image.name}</p>)}
                 </>)
                 }
             </div>
