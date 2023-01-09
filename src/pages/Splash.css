@@ -79,13 +79,13 @@ main {
   gap: 6px;
 }
 
-input {
+form input {
   background-color: var(--greyLight);
   border: 1px solid var(--greyOne);
   border-radius: 2px;
 }
 
-input:focus {
+form input:focus {
   outline: none;
   border: 1px solid var(--greyTwo);
 }
