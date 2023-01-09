@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
@@ -13,6 +14,7 @@ import { auth } from '../fire';
 export default function AvatarMenu({ username, profilePicture }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -82,8 +84,14 @@ export default function AvatarMenu({ username, profilePicture }) {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={(e) => {
+                      handleClose(e);
+                      navigate('/');
+                    }}>Profile</MenuItem>
+                    <MenuItem onClick={(e) => {
+                      handleClose(e);
+                      navigate('/accounts');
+                    }}>My account</MenuItem>
                     <MenuItem onClick={(event) => {
                         handleClose(event);
                         signOut(auth);
