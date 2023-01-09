@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import CreatePost from "./components/CreatePost";
 import Posts from "./pages/Posts";
 import spinner from "./assets/spinner.gif";
+import Account from "./components/Account";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,30 +33,32 @@ function App() {
   }, [user]);
 
   return (
-    <div className="app">
-      <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL}/>
+    <>
+      <div className="app">
+      <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL} />
       <CreatePost username={user?.displayName} open={open} setOpen={setOpen} />
       {loading ? (
-        <div style={{height: "50vh", display: "flex"}}>
-          <img style={{margin: "auto", width: "50px"}} src={spinner} alt="" />
+        <div style={{ height: "50vh", display: "flex" }}>
+          <img style={{ margin: "auto", width: "50px" }} src={spinner} alt="" />
         </div>
       ) :
         (user ? (
           <Routes>
             <Route path="/" element={<Posts user={user} setLoading={setLoading} />} />
+            <Route path="/accounts" element={<Account user={user} />} />
           </Routes>
         ) :
-        (
-          <Routes>
-            <Route path="/" element={<Splash />} />
-            <Route path="/accounts/signup" element={<Signup />} />
-          </Routes>
-        ))
-      }
-        <footer>
-          © 2022 Instagram clone by Jake Felice
-        </footer>
-    </div>
+          (
+            <Routes>
+              <Route path="/" element={<Splash />} />
+              <Route path="/accounts/signup" element={<Signup />} />
+            </Routes>
+          ))}
+      </div>
+      <footer>
+        © 2022 Instagram clone by Jake Felice
+      </footer>
+      </>
   );
 }
 
