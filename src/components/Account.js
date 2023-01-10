@@ -49,18 +49,12 @@ export default function Account({open, setOpen, user}) {
     if(name) {
       updateProfile(user, { displayName: name})
     }
-  };
-
-  const handleUpload = () => {
-    setUploading(true);
-    const storageRef = ref(storage, `images/${uuidv4() + image.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, image);
-    uploadTask.on(
+    if(image) {
+      const storageRef = ref(storage, `${user.uid}/${"profilePicture." + image.name.split('.')[1]}`);
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
         "state_changed",
         (snapshot) => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
         },
         (error) => {
           // Handle error
@@ -69,15 +63,33 @@ export default function Account({open, setOpen, user}) {
         () => {
           // Handle upload success 
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            addDoc(collection(db, "posts"),{
-              timestamp: serverTimestamp(),
-              imageUrl: downloadURL,
-              description,
-              username: user.displayName
-            });
+            updateProfile(user, { photoURL: downloadURL})
           });
           setUploading(false);
-          setDescription("");
+          setImage(null);
+        }
+    );
+    }
+  };
+
+  const handleUpload = () => {
+    setUploading(true);
+    const storageRef = ref(storage, `${user.uid}/${"profilePicture." + image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
+    uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+        },
+        (error) => {
+          // Handle error
+          setUploading(false);
+        },
+        () => {
+          // Handle upload success 
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            updateProfile(user, { photoURL: downloadURL})
+          });
+          setUploading(false);
           setImage(null);
         }
     );
