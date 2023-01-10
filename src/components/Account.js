@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const style = {
   margin: "50px auto",
@@ -78,8 +79,8 @@ export default function Account({open, setOpen, user}) {
             <IconButton aria-label="upload picture" component="label">
               <input onChange={handleChange} hidden accept="image/*" type="file" />
             <PhotoCamera />
-            {image?.name && (<p style={{marginLeft: '5px', color: '#444', alignSelf: 'center', fontSize: '12px'}}>{image.name}</p>)}
             </IconButton>
+            {image?.name && (<span style={{marginLeft: '5px', color: '#444', alignSelf: 'center', fontSize: '12px'}}>{image.name}</span>)}
           </div>
           <div className="setting__item">
             <Typography>Name</Typography>
@@ -89,7 +90,11 @@ export default function Account({open, setOpen, user}) {
             <Typography>Email</Typography>
             <TextField sx={{border: 'none'}} id="outlined-basic" label={user.email} variant="outlined" />
           </div>
+          <div>
+            <Button variant="outlined" color="error">Delete Account</Button>
+          </div>
         </div>
+        <Button sx={{marginTop: '26px'}} variant="outlined" size="small">Save</Button>
       </Box>
     </>
   );
