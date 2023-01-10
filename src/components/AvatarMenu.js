@@ -87,7 +87,7 @@ export default function AvatarMenu({ username, profilePicture }) {
                     <MenuItem onClick={(e) => {
                       handleClose(e);
                       navigate('/');
-                    }}>Profile</MenuItem>
+                    }}>Home</MenuItem>
                     <MenuItem onClick={(e) => {
                       handleClose(e);
                       navigate('/accounts');
