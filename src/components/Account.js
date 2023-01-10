@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CreatePost.css";
+import "./Account.css";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
 import { db, storage } from "../fire";
@@ -72,8 +72,8 @@ export default function Account({open, setOpen, user}) {
           Account settings
         </Typography>
 
-        <div>
-          <div style={{display: 'flex', alignItems: 'center'}}>
+        <div className="account__settings-panel">
+          <div className="setting__item">
             <Typography>Profile Picture</Typography>
             <IconButton aria-label="upload picture" component="label">
               <input onChange={handleChange} hidden accept="image/*" type="file" />
@@ -81,11 +81,11 @@ export default function Account({open, setOpen, user}) {
             {image?.name && (<p style={{marginLeft: '5px', color: '#444', alignSelf: 'center', fontSize: '12px'}}>{image.name}</p>)}
             </IconButton>
           </div>
-          <div style={{display: 'flex', alignItems: 'center'}}>
+          <div className="setting__item">
             <Typography>Name</Typography>
             <TextField sx={{border: 'none'}} id="outlined-basic" label={user.displayName} variant="outlined" />
           </div>
-          <div style={{display: 'flex', alignItems: 'center'}}>
+          <div className="setting__item">
             <Typography>Email</Typography>
             <TextField sx={{border: 'none'}} id="outlined-basic" label={user.email} variant="outlined" />
           </div>
