@@ -27,11 +27,21 @@ export default function Account({open, setOpen, user}) {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
         setImage(e.target.files[0]);
     }
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleName = (e) => {
+    setName(e.target.value);
   };
 
   const handleUpload = () => {
@@ -84,17 +94,17 @@ export default function Account({open, setOpen, user}) {
           </div>
           <div className="setting__item">
             <Typography>Name</Typography>
-            <TextField sx={{border: 'none'}} id="outlined-basic" label={user.displayName} variant="outlined" />
+            <TextField onChange={handleName} value={name} sx={{border: 'none'}} id="outlined-basic" label={user.displayName} variant="outlined" />
           </div>
           <div className="setting__item">
             <Typography>Email</Typography>
-            <TextField sx={{border: 'none'}} id="outlined-basic" label={user.email} variant="outlined" />
+            <TextField onChange={handleEmail} value={email} sx={{border: 'none'}} id="outlined-basic" label={user.email} variant="outlined" />
           </div>
           <div>
             <Button variant="outlined" color="error">Delete Account</Button>
           </div>
         </div>
-        <Button sx={{marginTop: '26px'}} variant="outlined" size="small">Save</Button>
+        <Button sx={{marginTop: '26px', alignSelf: 'center'}} variant="outlined" size="small">Save</Button>
       </Box>
     </>
   );
