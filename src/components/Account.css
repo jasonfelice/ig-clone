@@ -15,4 +15,5 @@
 
 .setting__item p {
   flex: 1;
+  min-width: 80px;
 }
