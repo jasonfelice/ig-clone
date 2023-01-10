@@ -85,6 +85,10 @@ export default function Account({open, setOpen, user}) {
             <Typography>Name</Typography>
             <TextField sx={{border: 'none'}} id="outlined-basic" label={user.displayName} variant="outlined" />
           </div>
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <Typography>Email</Typography>
+            <TextField sx={{border: 'none'}} id="outlined-basic" label={user.email} variant="outlined" />
+          </div>
         </div>
       </Box>
     </>
