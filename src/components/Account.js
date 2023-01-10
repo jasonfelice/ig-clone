@@ -3,6 +3,7 @@ import "./Account.css";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
 import { db, storage } from "../fire";
+import { updateProfile } from "firebase/auth";
 import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -42,6 +43,12 @@ export default function Account({open, setOpen, user}) {
 
   const handleName = (e) => {
     setName(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if(name) {
+      updateProfile(user, { displayName: name})
+    }
   };
 
   const handleUpload = () => {
@@ -104,7 +111,7 @@ export default function Account({open, setOpen, user}) {
             <Button variant="outlined" color="error">Delete Account</Button>
           </div>
         </div>
-        <Button sx={{marginTop: '26px', alignSelf: 'center'}} variant="outlined" size="small">Save</Button>
+        <Button onClick={handleSubmit} sx={{marginTop: '26px', alignSelf: 'center'}} variant="outlined" size="small">Save</Button>
       </Box>
     </>
   );
