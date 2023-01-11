@@ -3,7 +3,7 @@ import "./Account.css";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
 import { db, storage } from "../fire";
-import { updateProfile } from "firebase/auth";
+import { updateEmail, updateProfile, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -47,7 +47,16 @@ export default function Account({open, setOpen, user}) {
 
   const handleSubmit = () => {
     if(name) {
-      updateProfile(user, { displayName: name})
+      updateProfile(user, { displayName: name });
+    }
+    if(email) {
+      const credential =  EmailAuthProvider.credential(
+        user.email,
+        '123456'
+      );
+      reauthenticateWithCredential(user , credential).then(() => {
+        updateEmail(user, email);
+      });
     }
     if(image) {
       const storageRef = ref(storage, `${user.uid}/${"profilePicture." + image.name.split('.')[1]}`);
@@ -70,29 +79,6 @@ export default function Account({open, setOpen, user}) {
         }
     );
     }
-  };
-
-  const handleUpload = () => {
-    setUploading(true);
-    const storageRef = ref(storage, `${user.uid}/${"profilePicture." + image.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, image);
-    uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-        },
-        (error) => {
-          // Handle error
-          setUploading(false);
-        },
-        () => {
-          // Handle upload success 
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            updateProfile(user, { photoURL: downloadURL})
-          });
-          setUploading(false);
-          setImage(null);
-        }
-    );
   };
 
   return (
