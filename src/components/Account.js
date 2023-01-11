@@ -25,11 +25,11 @@ const style = {
 };
 
 export default function Account({open, setOpen, user}) {
-  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
-  const [uploading, setUploading] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -45,6 +45,14 @@ export default function Account({open, setOpen, user}) {
     setName(e.target.value);
   };
 
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleNewPassword = (e) => {
+    setNewPassword(e.target.value);
+  }
+
   const handleSubmit = () => {
     if(name) {
       updateProfile(user, { displayName: name });
@@ -52,7 +60,7 @@ export default function Account({open, setOpen, user}) {
     if(email) {
       const credential =  EmailAuthProvider.credential(
         user.email,
-        '123456'
+        password
       );
       reauthenticateWithCredential(user , credential).then(() => {
         updateEmail(user, email);
@@ -67,14 +75,12 @@ export default function Account({open, setOpen, user}) {
         },
         (error) => {
           // Handle error
-          setUploading(false);
         },
         () => {
           // Handle upload success 
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             updateProfile(user, { photoURL: downloadURL})
           });
-          setUploading(false);
           setImage(null);
         }
     );
@@ -99,12 +105,22 @@ export default function Account({open, setOpen, user}) {
           </div>
           <div className="setting__item">
             <Typography>Name</Typography>
-            <TextField onChange={handleName} value={name} sx={{border: 'none'}} id="outlined-basic" label={user.displayName} variant="outlined" />
+            <TextField onChange={handleName} value={name} sx={{border: 'none'}} label={user.displayName} variant="outlined" />
           </div>
           <div className="setting__item">
             <Typography>Email</Typography>
-            <TextField onChange={handleEmail} value={email} sx={{border: 'none'}} id="outlined-basic" label={user.email} variant="outlined" />
+            <TextField type="email" onChange={handleEmail} value={email} sx={{border: 'none'}} label={user.email} variant="outlined" />
           </div>
+          <div className="setting__item">
+            <Typography>New Password</Typography>
+            <TextField type="password" onChange={handleNewPassword} value={newPassword} sx={{border: 'none'}} label="password" variant="outlined" />
+          </div>
+          {(email || newPassword) && (
+            <div className="setting__item">
+              <Typography>Current Password</Typography>
+              <TextField type="password" onChange={handlePassword} value={password} sx={{border: 'none'}} label="current password"variant="outlined" />
+            </div>
+          )}
           <div>
             <Button variant="outlined" color="error">Delete Account</Button>
           </div>
