@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "./Account.css";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
-import { db, storage } from "../fire";
-import { updateEmail, updateProfile, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
-import { v4 as uuidv4 } from 'uuid';
+import { storage } from "../fire";
+import { updateEmail, updateProfile, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import IconButton from '@mui/material/IconButton';
@@ -56,6 +54,15 @@ export default function Account({open, setOpen, user}) {
   const handleSubmit = () => {
     if(name) {
       updateProfile(user, { displayName: name });
+    }
+    if(password) {
+      const credential =  EmailAuthProvider.credential(
+        user.email,
+        password
+      );
+      reauthenticateWithCredential(user , credential).then(() => {
+        updatePassword(user, newPassword);
+      });
     }
     if(email) {
       const credential =  EmailAuthProvider.credential(
