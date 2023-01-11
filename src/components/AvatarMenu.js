@@ -77,6 +77,7 @@ export default function AvatarMenu({ username, profilePicture }) {
               }}
             >
               <Paper>
+                <p style={{textAlign: 'center', padding: '2px', fontWeight: 500, borderBottom: '1px solid #ddd'}}>{username}</p>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
