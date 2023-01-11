@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import DeleteAccount from './DeleteAccount';
 
 const style = {
   margin: "50px auto",
@@ -22,12 +23,13 @@ const style = {
   borderRadius: "3px"
 };
 
-export default function Account({open, setOpen, user}) {
+export default function Account({ user }) {
   const [image, setImage] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [password, setPassword] = useState('');
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -96,6 +98,7 @@ export default function Account({open, setOpen, user}) {
 
   return (
     <>
+      < DeleteAccount user={user} open={open} setOpen={setOpen}/>
       <Box sx={style}>
         <Typography sx={{textAlign: "center"}}id="transition-modal-title" variant="h6" component="h2">
           Account settings
@@ -129,7 +132,7 @@ export default function Account({open, setOpen, user}) {
             </div>
           )}
           <div>
-            <Button variant="outlined" color="error">Delete Account</Button>
+            <Button onClick={() => setOpen(true)} variant="outlined" color="error">Delete Account</Button>
           </div>
         </div>
         <Button onClick={handleSubmit} sx={{marginTop: '26px', alignSelf: 'center'}} variant="outlined" size="small">Save</Button>
