@@ -36,7 +36,7 @@ function App() {
     <>
       <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL} />
-      <CreatePost username={user?.displayName} open={open} setOpen={setOpen} />
+      <CreatePost username={user?.displayName} photo={user?.photoURL} open={open} setOpen={setOpen} />
       {loading ? (
         <div style={{ height: "50vh", display: "flex" }}>
           <img style={{ margin: "auto", width: "50px" }} src={spinner} alt="" />

@@ -4,7 +4,7 @@ import { doc, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } 
 import { db } from '../fire';
 import { Avatar } from '@mui/material';
 
-function Post({postId, username, imageUrl, description, currentUser, time}) {
+function Post({postId, username, imageUrl, description, currentUser, time, photo}) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
 
@@ -33,7 +33,7 @@ function Post({postId, username, imageUrl, description, currentUser, time}) {
         <div className="post__header">
           <Avatar
             className= "post__avatar"
-            src= "static/images/avatar/1.jpg"
+            src= {photo ? photo : "static/images/avatar/1.jpg"}
             alt= {username}
           />
           <h3>{username}</h3>

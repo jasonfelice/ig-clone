@@ -31,7 +31,7 @@ const style = {
   borderRadius: "3px"
 };
 
-export default function CreatePost({open, setOpen, username}) {
+export default function CreatePost({open, setOpen, username, photo}) {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -67,7 +67,8 @@ export default function CreatePost({open, setOpen, username}) {
               timestamp: serverTimestamp(),
               imageUrl: downloadURL,
               description,
-              username
+              photo,
+              username,
             });
           });
           setProgress(0);
