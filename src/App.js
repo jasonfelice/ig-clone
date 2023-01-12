@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import { auth } from "./fire";
-import { onAuthStateChanged  } from "firebase/auth";
-import Header from "./components/Header";
-import Splash from "./pages/Splash";
-import Signup from "./pages/Signup";
-import CreatePost from "./components/CreatePost";
-import Posts from "./pages/Posts";
-import spinner from "./assets/spinner.gif";
-import Account from "./components/Account";
+import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import { auth } from './fire';
+import { onAuthStateChanged  } from 'firebase/auth';
+import Header from './components/Header';
+import Splash from './pages/Splash';
+import Signup from './pages/Signup';
+import CreatePost from './components/CreatePost';
+import Posts from './pages/Posts';
+import spinner from './assets/spinner.gif';
+import Account from './components/Account';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,8 +38,8 @@ function App() {
       <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL} />
       <CreatePost username={user?.displayName} photo={user?.photoURL} open={open} setOpen={setOpen} />
       {loading ? (
-        <div style={{ height: "50vh", display: "flex" }}>
-          <img style={{ margin: "auto", width: "50px" }} src={spinner} alt="" />
+        <div style={{ height: '50vh', display: 'flex' }}>
+          <img style={{ margin: 'auto', width: '50px' }} src={spinner} alt='' />
         </div>
       ) :
         (user ? (
@@ -51,7 +51,7 @@ function App() {
           (
             <Routes>
               <Route path="/" element={<Splash />} />
-              <Route path="/accounts/signup" element={<Signup />} />
+              <Route path="/accounts/signup "element={<Signup />} />
             </Routes>
           ))}
       </div>
