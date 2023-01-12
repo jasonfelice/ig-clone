@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import DeleteAccount from './DeleteAccount';
+import DeleteAccount from '../components/DeleteAccount';
 
 const style = {
   margin: "50px auto",

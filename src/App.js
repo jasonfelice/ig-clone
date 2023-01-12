@@ -9,7 +9,7 @@ import Signup from './pages/Signup';
 import CreatePost from './components/CreatePost';
 import Posts from './pages/Posts';
 import spinner from './assets/spinner.gif';
-import Account from './components/Account';
+import Account from './pages/Account';
 
 function App() {
   const [user, setUser] = useState(null);
