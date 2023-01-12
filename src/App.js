@@ -10,6 +10,7 @@ import CreatePost from './components/CreatePost';
 import Posts from './pages/Posts';
 import spinner from './assets/spinner.gif';
 import Account from './pages/Account';
+import Warning from './components/Warning';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,6 +37,7 @@ function App() {
     <>
       <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL} />
+      <Warning />
       <CreatePost username={user?.displayName} photo={user?.photoURL} open={open} setOpen={setOpen} />
       {loading ? (
         <div style={{ height: '50vh', display: 'flex' }}>
