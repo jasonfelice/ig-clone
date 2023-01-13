@@ -16,8 +16,18 @@ function App() {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [warning, setWarning] = useState(true);
+  const [error, setError] = useState({
+    type: '',
+    message: ''
+  });
 
   useEffect(() => {
+    if (warning) {
+      setTimeout(() => {
+        setWarning(false);
+      }, 5000);
+    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
@@ -31,13 +41,13 @@ function App() {
     return () => {
       unsubscribe();
     }
-  }, [user]);
+  }, [user, warning]);
 
   return (
     <>
       <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL} />
-      <Warning />
+      {warning && (<Warning error={error} />)}
       <CreatePost username={user?.displayName} photo={user?.photoURL} open={open} setOpen={setOpen} />
       {loading ? (
         <div style={{ height: '50vh', display: 'flex' }}>
