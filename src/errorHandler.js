@@ -1,6 +1,6 @@
 const errorHandler = (code) => {
   switch (code) {
-    default: return 'Test!';
+    default: return 'Uh oh, something went wrong. Please try again later!';
   }
 }
 
