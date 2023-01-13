@@ -16,17 +16,13 @@ function App() {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [warning, setWarning] = useState(true);
-  const [error, setError] = useState({
-    type: '',
-    message: ''
-  });
+  const [warning, setWarning] = useState(null);
 
   useEffect(() => {
     if (warning) {
       setTimeout(() => {
-        setWarning(false);
-      }, 5000);
+        setWarning(null);
+      }, 4000);
     }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -47,7 +43,7 @@ function App() {
     <>
       <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL} />
-      {warning && (<Warning error={error} />)}
+      {warning && (<Warning warning={warning} />)}
       <CreatePost username={user?.displayName} photo={user?.photoURL} open={open} setOpen={setOpen} />
       {loading ? (
         <div style={{ height: '50vh', display: 'flex' }}>
@@ -62,7 +58,7 @@ function App() {
         ) :
           (
             <Routes>
-              <Route path="/" element={<Splash />} />
+              <Route path="/" element={<Splash setWarning={setWarning} />} />
               <Route path="/accounts/signup "element={<Signup />} />
             </Routes>
           ))}

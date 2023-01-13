@@ -5,8 +5,9 @@ import logo from '../assets/logo.png';
 import spinner from '../assets/spinner.gif';
 import { auth } from '../fire';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import errorHandler from '../errorHandler';
 
-export default function Splash() {
+export default function Splash({ setWarning }) {
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -29,8 +30,7 @@ export default function Splash() {
     .then(() => setLoading(false))
     .catch((error) => {
       setLoading(false);
-      const errorCode = error.code;
-      const errorMessage = errorMessage;
+      setWarning({ type: 'error', message: errorHandler(error.code)});
     })
   };
   return (
