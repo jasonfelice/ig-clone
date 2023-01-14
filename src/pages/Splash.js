@@ -30,7 +30,7 @@ export default function Splash({ setWarning }) {
     .then(() => setLoading(false))
     .catch((error) => {
       setLoading(false);
-      setWarning({ type: 'error', message: errorHandler(error.code)});
+      setWarning(errorHandler(error.code));
     })
   };
   return (
