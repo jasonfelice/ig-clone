@@ -5,8 +5,9 @@ import logo from '../assets/logo.png';
 import spinner from '../assets/spinner.gif';
 import { auth } from '../fire';
 import { createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
+import errorHandler from '../errorHandler';
 
-export default function Signup() {
+export default function Signup({ setWarning }) {
   const [form, setForm] = useState({
     email: "",
     fullname: "",
@@ -42,8 +43,7 @@ export default function Signup() {
       })
     .catch((error) => {
       setLoading(false);
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      setWarning(errorHandler(error.code));
       // ..
     });
   };
