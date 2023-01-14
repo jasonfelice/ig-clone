@@ -59,7 +59,7 @@ function App() {
           (
             <Routes>
               <Route path="/" element={<Splash setWarning={setWarning} />} />
-              <Route path="/accounts/signup "element={<Signup />} />
+              <Route path="/accounts/signup"element={<Signup setWarning={setWarning} />} />
             </Routes>
           ))}
       </div>
