@@ -123,7 +123,7 @@ export default function Account({ user, setWarning }) {
 
   return (
     <>
-      < DeleteAccount user={user} open={open} setOpen={setOpen}/>
+      < DeleteAccount setWarning={setWarning} user={user} open={open} setOpen={setOpen}/>
       <Box sx={style}>
         <Typography sx={{textAlign: "center"}}id="transition-modal-title" variant="h6" component="h2">
           Account settings

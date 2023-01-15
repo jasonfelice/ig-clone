@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { reauthenticateWithCredential, EmailAuthProvider, deleteUser } from "firebase/auth";
+import errorHandler from '../errorHandler';
 
 const style = {
   position: 'absolute',
@@ -17,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function DeleteAccount({ open, setOpen, user }) {
+export default function DeleteAccount({ open, setOpen, user, setWarning }) {
   const handleClose = () => setOpen(false);
   const [password, setPassword] = useState('');
 
@@ -32,8 +33,9 @@ export default function DeleteAccount({ open, setOpen, user }) {
         password
       );
       reauthenticateWithCredential(user , credential).then(() => {
-        deleteUser(user);
-      });
+        deleteUser(user).then(() => setWarning({ type: 'info', message: 'Your account has been deleted.'}));
+      })
+        .catch((error) => setWarning(errorHandler(error.code)));
   }
 
   return (
