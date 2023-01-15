@@ -73,7 +73,8 @@ main {
   margin: auto;
 }
 
-.splash__login, form {
+.splash__login,
+form {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -83,6 +84,7 @@ form input {
   background-color: var(--greyLight);
   border: 1px solid var(--greyOne);
   border-radius: 2px;
+  padding: 9px;
 }
 
 form input:focus {
@@ -104,10 +106,6 @@ form button:disabled {
   background-color: var(--blueOne);
 }
 
-form input {
-  padding: 9px;
-}
-
 footer {
   padding: 52px 12px;
   text-align: center;
@@ -123,7 +121,10 @@ button img {
 }
 
 @media only screen and (max-width: 400px) {
-  main, .splash_main, .splash__login, .splash__prompt {
+  main,
+  .splash_main,
+  .splash__login,
+  .splash__prompt {
     width: 100%;
   }
 

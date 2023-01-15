@@ -12,6 +12,6 @@ const errorHandler = (code) => {
       return { type: 'error', message: 'Incorrect password, please try again!' };
     default: return { type: 'error', message: 'Uh oh, something went wrong. Please try again later!' };
   }
-}
+};
 
 export default errorHandler;
