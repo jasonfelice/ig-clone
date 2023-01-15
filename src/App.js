@@ -44,7 +44,7 @@ function App() {
       <div className="app">
       <Header setOpen={setOpen} loggedIn={!!user} username={user?.displayName} photo={user?.photoURL} />
       {warning && (<Warning warning={warning} />)}
-      <CreatePost username={user?.displayName} photo={user?.photoURL} open={open} setOpen={setOpen} />
+      <CreatePost setWarning={setWarning} username={user?.displayName} photo={user?.photoURL} open={open} setOpen={setOpen} />
       {loading ? (
         <div style={{ height: '50vh', display: 'flex' }}>
           <img style={{ margin: 'auto', width: '50px' }} src={spinner} alt='' />

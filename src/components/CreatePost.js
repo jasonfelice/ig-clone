@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import LinearProgress from '@mui/material/LinearProgress';
+import errorHandler from '../errorHandler';
 
 const style = {
   display: "flex",
@@ -31,7 +32,7 @@ const style = {
   borderRadius: "3px"
 };
 
-export default function CreatePost({open, setOpen, username, photo}) {
+export default function CreatePost({open, setOpen, username, photo, setWarning}) {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -69,6 +70,14 @@ export default function CreatePost({open, setOpen, username, photo}) {
               description,
               photo,
               username,
+            })
+            .then(() => {
+              setWarning({ type: 'success', message: 'Post was created successfully!'});
+              handleClose();
+            })
+            .catch((error) => {
+              setWarning(errorHandler(error.code));
+              setUploading(false);
             });
           });
           setProgress(0);
@@ -109,8 +118,12 @@ export default function CreatePost({open, setOpen, username, photo}) {
                 <input onChange={handleChange} hidden accept="image/*" type="file" />
               <PhotoCamera />
               </IconButton>
-              <Button onClick={handleUpload} variant="contained" component="label">Upload</Button>
-                {image?.name && (<p style={{marginLeft: '5px', color: '#444', alignSelf: 'center', fontSize: '12px'}}>{image.name}</p>)}
+                {image?.name && (
+                  <>
+                    <Button onClick={handleUpload} variant="contained" component="label">Upload</Button>
+                    <p style={{marginLeft: '5px', color: '#444', alignSelf: 'center', fontSize: '12px'}}>{image.name}</p>
+                  </>
+                )}
                 </>)
                 }
             </div>
