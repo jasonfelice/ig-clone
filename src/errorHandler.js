@@ -7,10 +7,10 @@ const errorHandler = (code) => {
     case ('auth/invalid-email'):
       return { type: 'error', message: 'Please enter a correct email address.' };
     case ('auth/user-not-found'):
-      return { type: 'error', message: 'Incorrect email address or password, please try again!' };
+      return { type: 'error', message: 'Incorrect password, please try again!' };
     case ('auth/wrong-password'):
-      return { type: 'error', message: 'Incorrect email address or password, please try again!' };
-    default: return 'Uh oh, something went wrong. Please try again later!';
+      return { type: 'error', message: 'Incorrect password, please try again!' };
+    default: return { type: 'error', message: 'Uh oh, something went wrong. Please try again later!' };
   }
 }
 
