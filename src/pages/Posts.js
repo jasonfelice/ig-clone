@@ -45,7 +45,7 @@ export default function Posts({ user }) {
             imageUrl = {data.post.imageUrl}
             description = {data.post.description}
             photo = {data.post.photo}
-            time = {data.post.timestamp.toDate()}
+            time = {data.post.timestamp?.toDate()}
           />))
       }
     </div>

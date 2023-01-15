@@ -37,7 +37,7 @@ function Post({postId, username, imageUrl, description, currentUser, time, photo
             alt= {username}
           />
           <h3>{username}</h3>
-          <span>{time.toString().slice(4, 15)}</span>
+          <span>{time?.toString().slice(4, 15)}</span>
         </div>
 
         <img className="post__image" src={imageUrl} alt="" />
