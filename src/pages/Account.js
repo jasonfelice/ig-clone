@@ -10,6 +10,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import DeleteAccount from '../components/DeleteAccount';
+import errorHandler from '../errorHandler';
 
 const style = {
   margin: "50px auto",
@@ -23,7 +24,7 @@ const style = {
   borderRadius: "3px"
 };
 
-export default function Account({ user }) {
+export default function Account({ user, setWarning }) {
   const [image, setImage] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -55,16 +56,28 @@ export default function Account({ user }) {
 
   const handleSubmit = () => {
     if(name) {
-      updateProfile(user, { displayName: name });
+      updateProfile(user, { displayName: name })
+        .then(() => {
+          setWarning({ type: 'success', message: 'The name was updated successfully!' });
+          setName('');
+        })
+        .catch((error) => setWarning(errorHandler(error.code)));
     }
-    if(password) {
+    if(newPassword) {
       const credential =  EmailAuthProvider.credential(
         user.email,
         password
       );
       reauthenticateWithCredential(user , credential).then(() => {
-        updatePassword(user, newPassword);
-      });
+        updatePassword(user, newPassword)
+          .then(() => {
+            setWarning({ type: 'success', message: 'The password was updated successfully!'})
+            setNewPassword('');
+            setPassword('');
+          })
+          .catch((error) => setWarning(errorHandler(error.code)));
+      })
+        .catch((error) => setWarning(errorHandler(error.code)));
     }
     if(email) {
       const credential =  EmailAuthProvider.credential(
@@ -72,8 +85,15 @@ export default function Account({ user }) {
         password
       );
       reauthenticateWithCredential(user , credential).then(() => {
-        updateEmail(user, email);
-      });
+        updateEmail(user, email)
+        .then(() => {
+          setWarning({ type: 'success', message: 'The email was updated successfully!'});
+          setEmail('');
+          setPassword('');
+        })
+          .catch((error) => setWarning(errorHandler(error.code)));
+      })
+        .catch((error) => setWarning(errorHandler(error.code)));
     }
     if(image) {
       const storageRef = ref(storage, `${user.uid}/${"profilePicture." + image.name.split('.')[1]}`);
@@ -89,8 +109,13 @@ export default function Account({ user }) {
           // Handle upload success 
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             updateProfile(user, { photoURL: downloadURL})
-          });
-          setImage(null);
+              .then(() => {
+                setWarning({ type: 'success', message: 'Profile picture updated successfully!'});
+                setImage(null);
+              })
+              .catch((error) => setWarning(errorHandler(error.code)));
+          })
+           .catch((error) => setWarning(errorHandler(error.code)));;
         }
     );
     }
@@ -127,8 +152,8 @@ export default function Account({ user }) {
           </div>
           {(email || newPassword) && (
             <div className="setting__item">
-              <Typography>Current Password</Typography>
-              <TextField type="password" onChange={handlePassword} value={password} sx={{border: 'none'}} label="current password"variant="outlined" />
+              <Typography>Current Password*</Typography>
+              <TextField type="password" onChange={handlePassword} value={password} sx={{border: 'none'}} label="current password*"variant="outlined" />
             </div>
           )}
           <div>

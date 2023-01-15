@@ -53,7 +53,7 @@ function App() {
         (user ? (
           <Routes>
             <Route path="/" element={<Posts user={user} setLoading={setLoading} />} />
-            <Route path="/accounts" element={<Account user={user} />} />
+            <Route path="/accounts" element={<Account user={user} setWarning={setWarning} />} />
           </Routes>
         ) :
           (
