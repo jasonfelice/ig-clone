@@ -4,6 +4,7 @@
 
 - [📗 Table of Contents](#-table-of-contents)
 - [📖 Instagram\_clone ](#-instagram_clone-)
+  - [Screenshots:](#screenshots)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -25,6 +26,18 @@
 # 📖 Instagram_clone <a name="about-project"></a>
 
 > This is a clone of Instagram. After creating an account, users can create or browse all the posts and comment on them.
+
+
+## <p align="center">Screenshots:</p>
+  <p align="center">
+    <img src="./screenshots/home.png">
+  </p>
+   <p align="center">
+    <img src="./screenshots/login.png">
+  </p>
+   <p align="center">
+    <img src="./screenshots/post.png">
+  </p>
 
 ## 🛠 Built With <a name="built-with"></a>
 
