@@ -34,13 +34,10 @@
 
 .post__comments {
   padding: 16px;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-}
-
-.post__comments {
-  font-size: 15px;
 }
 
 .post__comment-username {
