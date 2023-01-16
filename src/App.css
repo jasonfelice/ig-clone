@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --backGrey: #fafafa;
+  --greyOne: #dbdbdb;
+  --greyTwo: #a9a9a9;
+  --greyThree: #8e8e8e;
+  --greyFour: #8e8e95;
+  --blueOne: #b2dffc;
+  --blueTwo: #0095f6;
+  --blueCyan: #27c4f5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
+  background-color: var(--backGrey);
   min-height: 100vh;
+}
+
+footer {
+  background-color: var(--backGrey);
+}
+
+.app__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+  padding: 16px;
+  border-bottom: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app__headerLogo {
+  object-fit: contain;
+  width: 103px;
+}
+
+.app__create-post-button {
+  display: flex;
+  border-radius: 50%;
+  padding: 2px;
+  transition: all 0.05s ease-out;
+}
+
+.app__create-post-button:hover {
+  box-shadow: 0 0 10px 0 var(--greyOne);
+  transform: scale(1.1);
+}
+
+.app__create-post-button:active {
+  transform: scale(0.9);
+}
+
+.app__header-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app__posts {
+  padding: 20px;
+  margin: 30px auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  gap: 1rem;
 }

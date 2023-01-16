@@ -1,0 +1,25 @@
+.account__settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.setting__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.setting__item p {
+  flex: 1;
+  min-width: 80px;
+}
+
+@media only screen and (max-width: 500px) {
+  .setting__item div {
+    width: 100%;
+  }
+}

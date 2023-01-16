@@ -1,0 +1,135 @@
+:root {
+  --greyLight: #fafafa;
+  --greyOne: #dbdbdb;
+  --greyTwo: #a9a9a9;
+  --greyThree: #8e8e8e;
+  --greyFour: #8e8e95;
+  --blueOne: #b2dffc;
+  --blueTwo: #0095f6;
+  --blueCyan: #27c4f5;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: var(--blueCyan);
+  font-weight: 500;
+}
+
+a:active {
+  color: var(--blueOne);
+}
+
+main {
+  height: 80vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash__login,
+.splash__prompt {
+  background-color: #fff;
+  border: 1px solid var(--greyOne);
+  width: 350px;
+  padding: 10px 40px;
+}
+
+.splash__login {
+  margin-bottom: 10px;
+}
+
+.splash__prompt p {
+  text-align: center;
+  font-size: 14px;
+  margin: 15px;
+}
+
+.splash__head-wrapper {
+  margin: 36px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.splash__head-wrapper p {
+  text-align: center;
+  color: var(--greyFour);
+  font-weight: 500;
+}
+
+.splash__logo {
+  width: 175px;
+  height: 51px;
+  align-self: center;
+  margin: auto;
+}
+
+.splash__login,
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+form input {
+  background-color: var(--greyLight);
+  border: 1px solid var(--greyOne);
+  border-radius: 2px;
+  padding: 9px;
+}
+
+form input:focus {
+  outline: none;
+  border: 1px solid var(--greyTwo);
+}
+
+form button {
+  border: none;
+  border-radius: 5px;
+  background-color: var(--blueTwo);
+  color: #fff;
+  font-weight: 600;
+  margin-top: 10px;
+  height: 30px;
+}
+
+form button:disabled {
+  background-color: var(--blueOne);
+}
+
+footer {
+  padding: 52px 12px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--greyThree);
+}
+
+button img {
+  display: block;
+  margin: auto;
+  width: 25px;
+  filter: invert(1);
+}
+
+@media only screen and (max-width: 400px) {
+  main,
+  .splash_main,
+  .splash__login,
+  .splash__prompt {
+    width: 100%;
+  }
+
+  main {
+    height: auto;
+    min-height: auto;
+  }
+}
